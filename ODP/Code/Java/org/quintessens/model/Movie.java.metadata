@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.5" replicaid="C125806D0067E30E" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1ee" sequence="13" unid="EF30C12B49DA7D45C125806D006D1A8C">
+<created><datetime>20161116T205142,20+01</datetime></created>
+<modified><datetime>20161117T103402,37+01</datetime></modified>
+<revised><datetime>20161117T103402,36+01</datetime></revised>
+<lastaccessed><datetime>20161117T103402,37+01</datetime></lastaccessed>
+<addedtofile><datetime>20161116T205142,21+01</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Patrick Kwinten/O=quintessens</name></updatedby>
+<wassignedby><name>CN=Patrick Kwinten/O=quintessens</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>org/quintessens/model/Movie.java</text></item>
+
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>org/quintessens/model/Movie.java</text></item>
+
+</note>

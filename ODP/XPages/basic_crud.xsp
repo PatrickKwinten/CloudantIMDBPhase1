@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+	<xp:this.beforePageLoad><![CDATA[#{javascript://for a change we do not register a managed bean
+viewScope.controller = new org.quintessens.controller.MovieController();
+//connect right away
+CloudantController.connect();}]]>
+	</xp:this.beforePageLoad>
+	<xp:panel styleClass="container">
+		<div class="jumbotron">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="md-col-4">
+						</div><div class="md-col-8">
+						<h1>Cloudant &amp;&#160;IMDB</h1>
+						<p>
+							Some basic operations towards Cloudant,
+							utilizing&#160;
+							<a href="http://elstarit.nl/2016/04/04/cloudant-connector-xpages/">
+								Frank van der Linden's
+								Cloudant-connector
+							</a>
+							&#160;for XPages. We are running against a public subset of IMDB:&#160;https://examples.cloudant.com/movies-demo</p>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-2 col-xs-6">
+									
+									
+									</div>
+								<div class="col-md-6 col-xs-6"/>
+									
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</xp:panel>
+
+	<xp:panel styleClass="container">
+		<h4>
+			Administration
+			<small> - some actions</small>
+		</h4>
+		<xp:panel styleClass="bs-callout bs-callout-danger">
+
+			<xp:button value="Test Connection" id="button1" styleClass="btn btn-primary">
+				<i class="fa fa-plug" aria-hidden="true" />
+				&#160;
+				<xp:eventHandler event="onclick" submit="true"
+					refreshMode="partial" refreshId="statusConnection">
+					<xp:this.action><![CDATA[#{javascript:CloudantController.connect();}]]></xp:this.action>
+				</xp:eventHandler>
+			</xp:button>
+			<xp:button value="Create View (secondary index)" id="button2">
+				<i class="fa fa-list-alt" aria-hidden="true" />
+				&#160;
+
+				<xp:eventHandler event="onclick" submit="true"
+					refreshMode="complete">
+					<xp:this.action>
+
+						<xp:actionGroup>
+							<xp:confirm
+								message="Create a view in Cloudant db?" />
+
+
+
+							<xp:executeScript
+								script="#{javascript:CloudantController.createDesignDoc();}" />
+						</xp:actionGroup>
+					</xp:this.action>
+				</xp:eventHandler>
+			</xp:button>
+			
+	<xp:button value="Remove all Documents" id="btnClearTable"
+		styleClass="btn btn-warning">
+		<i class="fa fa-trash" aria-hidden="true"/>
+		&#160;
+		<xp:eventHandler event="onclick" submit="true"
+			refreshMode="complete">
+			<xp:this.action>
+				<xp:actionGroup>
+					<xp:confirm
+						message="Please make sure you have a full account for cloudant, not a lite license due to it's read-write limitations"/>
+					
+					<xp:executeScript
+						script="#{javascript:CloudantController.removeAllDocuments();}"/>
+					
+				</xp:actionGroup>
+			</xp:this.action>
+		</xp:eventHandler>
+	</xp:button>
+	
+		</xp:panel>
+	<xp:div>
+		<xp:this.styleClass><![CDATA[#{javascript:if (CloudantController.connected == true){
+	return "alert alert-success";
+} else{
+	return "alert alert-warning"	
+}}]]></xp:this.styleClass>
+		<p>
+			connection:<xp:text id="statusConnection"
+				value="#{CloudantController.connected}" />
+		</p>
+	</xp:div>
+	</xp:panel>
+	
+</xp:view>
